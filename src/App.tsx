@@ -6,20 +6,30 @@ import TimerLeft from "./components/TimerLeft";
 import "./App.scss";
 
 function App() {
+  const [input, setInput] = useState("");
+
   function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     const newInput: string = event.target.value;
-    console.log(newInput);
+    setInput(newInput);
   }
+
+  function resetTimer() {
+    setInput("0");
+  }
+
+  function startTimer() {}
+
+  function pauseTimer() {}
 
   return (
     <div className="app">
       <h3>Zeit festlegen:</h3>
-      <Input action={handleInput}></Input>
-      <TimerLeft></TimerLeft>
+      <Input onclick={handleInput} timer={input}></Input>
+      <TimerLeft counter={input}></TimerLeft>
       <div className="btn_row">
-        <Button title="Start"></Button>
-        <Button title="Pause"></Button>
-        <Button title="Reset"></Button>
+        <Button title="Start" onclick={resetTimer}></Button>
+        <Button title="Pause" onclick={resetTimer}></Button>
+        <Button title="Reset" onclick={resetTimer}></Button>
       </div>
     </div>
   );
